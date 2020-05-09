@@ -261,7 +261,7 @@ function showTab(n) {
 		var num = document.getElementById("numb").value;
 		var html = '';
 		for(var x=1;x<=num;x++){
-			html+= '<p><input type="text" placeholder="Player '+x+'" id="player_name_'+x+'" name="player_name_'+x+'"></p>';
+			html+= '<p><input type="text" placeholder="Player '+x+'" id="player_name_'+x+'" name="player_name_'+x+'"></p><div style="display:none;" id="total_indi_score_'+x+'"></div>';
 		}
 		document.getElementById("player_name_show").innerHTML = html;
 	}
@@ -294,7 +294,8 @@ function showTab(n) {
 				var cell = '<div class="cell" data-title="Round 1">'+score+'('+iTotal+')</div>';
 				jQuery('#heading_'+x).append(cell);
 				var name = document.getElementById("player_name_"+x).value;
-			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r2_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p><input type="hidden" id="total_indi_score_'+x+'" value="'+iTotal+'" />';
+			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r2_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+x).val(iTotal);
 			}
 		}
 		
@@ -302,7 +303,8 @@ function showTab(n) {
 		rScore = +baseScore + +rScore;
 		var cell = '<div class="cell" data-title="Round 1">'+score+'('+rScore+')</div>';
 		var name = document.getElementById("player_name_"+win).value;
-			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r2_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p><input type="hidden" id="total_indi_score_'+win+'" value="'+rScore+'" />';
+		html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r2_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+win).val(rScore);
 		document.getElementById("player_name_show_r2").innerHTML = html;
 		jQuery('#heading_'+win).append(cell);
 	}
@@ -320,14 +322,19 @@ function showTab(n) {
 			if(x != win){
 				var cell = '<div class="cell" data-title="Round 2">'+score+'('+iTotal+')</div>';
 				jQuery('#heading_'+x).append(cell);
-			}
-			
-			var name = document.getElementById("player_name_"+x).value;
+				var name = document.getElementById("player_name_"+x).value;
 			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r3_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+x).val(iTotal);
+			}
 		}
-		document.getElementById("player_name_show_r3").innerHTML = html;
 		var score = document.getElementById("player_name_r2_"+win).value;
+		baseScore = document.getElementById("total_indi_score_"+win).value;
 		rScore = +baseScore + +rScore;
+		var name = document.getElementById("player_name_"+win).value;
+			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r3_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+win).val(rScore);
+		document.getElementById("player_name_show_r3").innerHTML = html;
+		
 		var cell = '<div class="cell" data-title="Round 2">'+score+'('+rScore+')</div>';
 		jQuery('#heading_'+win).append(cell);
 	}
@@ -345,14 +352,19 @@ function showTab(n) {
 			if(x != win){
 				var cell = '<div class="cell" data-title="Round 3">'+score+'('+iTotal+')</div>';
 				jQuery('#heading_'+x).append(cell);
-			}
-			
-			var name = document.getElementById("player_name_"+x).value;
+				var name = document.getElementById("player_name_"+x).value;
 			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r4_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+x).val(iTotal);
+			}
 		}
-		document.getElementById("player_name_show_r4").innerHTML = html;
 		var score = document.getElementById("player_name_r3_"+win).value;
+		baseScore = document.getElementById("total_indi_score_"+win).value;
 		rScore = +baseScore + +rScore;
+		var name = document.getElementById("player_name_"+win).value;
+			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r4_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+win).val(rScore);
+		document.getElementById("player_name_show_r4").innerHTML = html;
+		
 		var cell = '<div class="cell" data-title="Round 3">'+score+'('+rScore+')</div>';
 		jQuery('#heading_'+win).append(cell);
 	}
@@ -370,14 +382,19 @@ function showTab(n) {
 			if(x != win){
 				var cell = '<div class="cell" data-title="Round 4">'+score+'('+iTotal+')</div>';
 				jQuery('#heading_'+x).append(cell);
-			}
-			
-			var name = document.getElementById("player_name_"+x).value;
+				var name = document.getElementById("player_name_"+x).value;
 			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r5_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+x).val(iTotal);
+			}
 		}
-		document.getElementById("player_name_show_r5").innerHTML = html;
 		var score = document.getElementById("player_name_r4_"+win).value;
+		baseScore = document.getElementById("total_indi_score_"+win).value;
 		rScore = +baseScore + +rScore;
+		var name = document.getElementById("player_name_"+win).value;
+			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r5_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+win).val(rScore);
+		document.getElementById("player_name_show_r5").innerHTML = html;
+		
 		var cell = '<div class="cell" data-title="Round 4">'+score+'('+rScore+')</div>';
 		jQuery('#heading_'+win).append(cell);
 	}
@@ -395,14 +412,19 @@ function showTab(n) {
 			if(x != win){
 				var cell = '<div class="cell" data-title="Round 5">'+score+'('+iTotal+')</div>';
 				jQuery('#heading_'+x).append(cell);
-			}
-			
-			var name = document.getElementById("player_name_"+x).value;
+				var name = document.getElementById("player_name_"+x).value;
 			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r6_'+x+'" name="player_name_'+x+'"><input type="radio" id="'+x+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+x).val(iTotal);
+			}
 		}
-		document.getElementById("player_name_show_r6").innerHTML = html;
 		var score = document.getElementById("player_name_r5_"+win).value;
+		baseScore = document.getElementById("total_indi_score_"+win).value;
 		rScore = +baseScore + +rScore;
+		var name = document.getElementById("player_name_"+win).value;
+			html+= '<p><input type="number" placeholder="'+name+' score" id="player_name_r6_'+win+'" name="player_name_'+win+'"><input type="radio" id="'+win+'" name="winner" /></p>';
+			jQuery('#total_indi_score_'+win).val(rScore);
+		document.getElementById("player_name_show_r6").innerHTML = html;
+		
 		var cell = '<div class="cell" data-title="Round 5">'+score+'('+rScore+')</div>';
 		jQuery('#heading_'+win).append(cell);
 	}
@@ -427,6 +449,7 @@ function showTab(n) {
 		}
 		document.getElementById("player_name_show_r7").innerHTML = html;
 		var score = document.getElementById("player_name_r6_"+win).value;
+		baseScore = document.getElementById("total_indi_score_"+win).value;
 		rScore = +baseScore + +rScore;
 		var cell = '<div class="cell" data-title="Round 6">'+score+'('+rScore+')</div>';
 		jQuery('#heading_'+win).append(cell);
